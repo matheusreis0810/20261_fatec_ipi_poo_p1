@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 
@@ -7,6 +9,11 @@ public class Jogo {
         var gerador = new Random();
         var cacador = new Personagem("Cleber");
         String[] itens = {"Pena", "Couro", "Osso", "Presa", "Garra"};
+        List <Musica> repertorio = new ArrayList<>();
+        String[] titulos = {"Pena", "Couro", "Osso", "Presa", "Garra"};
+
+        for(int i=0; i<10; i++){
+        }   
 
         while(cacador.getVivo() == 1){
             int OQueFazer = gerador.nextInt(1, 4);
