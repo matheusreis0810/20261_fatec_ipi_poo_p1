@@ -7,7 +7,7 @@ public class Personagem {
     private int fome;
     private int sono;
     List<String> mochila = new ArrayList<>();
-
+    private int vivo;
     Personagem(String nome){
         this();
         this.nome = nome;
@@ -17,6 +17,7 @@ public class Personagem {
         energia = 10;
         fome = 0;
         sono = 0;
+        vivo = 1;
     }
 
     Personagem(int energia, int fome, int sono) {
@@ -26,6 +27,18 @@ public class Personagem {
         this.sono = sono >= 0 && sono <= 10 ? sono : 0;
     }
 
+
+    void morte(String nome, List<String> mochila){
+        if(energia <= 0){
+        System.out.println(nome +  " Morreu");
+        System.out.println("Inventario de " + nome + ": " + mochila);
+        this.vivo = 0;
+        }
+    }
+
+    public int getVivo(){
+        return this.vivo;
+    }
     void cacar() {
         if (energia >= 2) {
             System.out.printf("%s caçando\n", nome);

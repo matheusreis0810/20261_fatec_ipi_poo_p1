@@ -8,7 +8,7 @@ public class Jogo {
         var cacador = new Personagem("Cleber");
         String[] itens = {"Pena", "Couro", "Osso", "Presa", "Garra"};
 
-        while(true){
+        while(cacador.getVivo() == 1){
             int OQueFazer = gerador.nextInt(1, 4);
             switch (OQueFazer){
                 case 1:{
@@ -27,6 +27,7 @@ public class Jogo {
             System.out.println(cacador);
             System.out.println("Conteudo da mochila do " + cacador.nome + ": " + cacador.mochila);
             System.out.println("***************************");
+            cacador.morte(cacador.nome, cacador.mochila);
             try {
                 Thread.sleep(5000);
             }catch (InterruptedException _) {
