@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 public class Personagem {
     String nome;
@@ -7,17 +8,19 @@ public class Personagem {
     private int fome;
     private int sono;
     List<String> mochila = new ArrayList<>();
-    private int vivo;
+    List <Musica> repertorio = new ArrayList<>();
+
     Personagem(String nome){
         this();
         this.nome = nome;
     }
+    
     Personagem() {
         System.out.println("Construindo novo personagem");
         energia = 10;
         fome = 0;
         sono = 0;
-        vivo = 1;
+
     }
 
     Personagem(int energia, int fome, int sono) {
@@ -27,18 +30,17 @@ public class Personagem {
         this.sono = sono >= 0 && sono <= 10 ? sono : 0;
     }
 
-
     void morte(String nome, List<String> mochila){
         if(energia <= 0){
         System.out.println(nome +  " Morreu");
         System.out.println("Inventario de " + nome + ": " + mochila);
-        this.vivo = 0;
         }
     }
 
-    public int getVivo(){
-        return this.vivo;
+    boolean estaMorto() {
+        return energia <= 0;
     }
+
     void cacar() {
         if (energia >= 2) {
             System.out.printf("%s caçando\n", nome);
@@ -81,5 +83,21 @@ public class Personagem {
         return String.format(
                 "%s: e:%d, f:%d, s:%d",
                 nome, energia, fome, sono);
+    }
+
+    void aprenderMusica (List<Musica> disponivel) {
+        Random gerador = new Random();
+        int indice = gerador.nextInt(disponivel.size());
+        Musica sorteada = disponivel.get(indice);
+        if (repertorio.contains(sorteada)) {
+            System.out.println(nome + " já conhece a música: " + sorteada.getTitulo());    
+        } else {
+            repertorio.add(sorteada);
+            System.out.println(nome + " aprendeu a música: " + sorteada.getTitulo());
+        }
+    }
+
+    void adicionaMusica (Musica musica) {
+        repertorio.add(musica);
     }
 }

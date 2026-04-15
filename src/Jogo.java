@@ -9,13 +9,15 @@ public class Jogo {
         var gerador = new Random();
         var cacador = new Personagem("Cleber");
         String[] itens = {"Pena", "Couro", "Osso", "Presa", "Garra"};
-        List <Musica> repertorio = new ArrayList<>();
-        String[] titulos = {"Pena", "Couro", "Osso", "Presa", "Garra"};
+        
+        List <Musica> disponivel = new ArrayList<>();
+        String[] titulos = {"Center Mass", "Purple Rain", "Kidult", "End of Beginning", "In a Lake",
+                            "Timeless", "Don't Fear The Reaper", "Karma Police", "The Boss", "Layla"};
+        for (int i = 0; i < 10; i++) {
+            disponivel.add(new Musica(titulos[i]));
+        } 
 
-        for(int i=0; i<10; i++){
-        }   
-
-        while(cacador.getVivo() == 1){
+        while(!cacador.estaMorto()){
             int OQueFazer = gerador.nextInt(1, 4);
             switch (OQueFazer){
                 case 1:{
@@ -31,9 +33,12 @@ public class Jogo {
                     cacador.dormir();
                     break;
             }
+            cacador.aprenderMusica(disponivel);
             System.out.println(cacador);
+            cacador.aprenderMusica(disponivel);
             System.out.println("Conteudo da mochila do " + cacador.nome + ": " + cacador.mochila);
-            System.out.println("***************************");
+            System.out.println("Repertório do " + cacador.nome + ": " + cacador.repertorio);
+            System.out.println("*********");
             cacador.morte(cacador.nome, cacador.mochila);
             try {
                 Thread.sleep(5000);
