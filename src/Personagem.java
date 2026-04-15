@@ -10,12 +10,8 @@ public class Personagem {
     List<String> mochila = new ArrayList<>();
     List <Musica> repertorio = new ArrayList<>();
 
-    Personagem(String nome){
-        this();
+    Personagem(String nome) {
         this.nome = nome;
-    }
-    
-    Personagem() {
         System.out.println("Construindo novo personagem");
         energia = 10;
         fome = 0;
@@ -23,17 +19,20 @@ public class Personagem {
 
     }
 
-    Personagem(int energia, int fome, int sono) {
+    Personagem(String nome, int energia, int fome, int sono) {
         System.out.println("Construindo novo personagem");
+        this.nome = nome;
         this.energia = energia < 0 || energia > 10 ? 10 : energia;
         this.fome = fome >= 0 && fome <= 10 ? fome : 0;
         this.sono = sono >= 0 && sono <= 10 ? sono : 0;
     }
 
-    void morte(String nome, List<String> mochila){
+    void morte(String nome, List<String> mochila, List<Musica> repertorio){
         if(energia <= 0){
         System.out.println(nome +  " Morreu");
         System.out.println("Inventario de " + nome + ": " + mochila);
+        System.out.println("Repertorio de " + nome + ": " + repertorio);
+        System.out.println("******************************");
         }
     }
 
@@ -81,8 +80,8 @@ public class Personagem {
     public String toString() {
         // nome: e:5, f:4, s:8
         return String.format(
-                "%s: e:%d, f:%d, s:%d",
-                nome, energia, fome, sono);
+                "%s: e:%d, f:%d, s:%d\nmochila:%s\nrepertorio:%s\n******************************",
+                nome, energia, fome, sono, mochila, repertorio);
     }
 
     void aprenderMusica (List<Musica> disponivel) {
